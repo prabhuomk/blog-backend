@@ -16,7 +16,7 @@ import {
   } from "../helper.js";
   import { createConnection } from "../index.js";
   import express from "express";
-  import bcrypt from "bcrypt";
+  import bcryptjs from "bcryptjs";
   import jwt from "jsonwebtoken";
   
   
@@ -57,7 +57,7 @@ import {
 const username=user.username;
   
       const inDbStoredPassword = user.password;
-      const isMatch = await bcrypt.compare(password, inDbStoredPassword);
+      const isMatch = await bcryptjs.compare(password, inDbStoredPassword);
       if (isMatch) {
         const token = jwt.sign({ id: user._id }, process.env.KEY);
   
@@ -116,8 +116,8 @@ const username=user.username;
   });
   
   async function genPassword(password) {
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const salt = await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(password, salt);
     return hashedPassword;
   }
   
