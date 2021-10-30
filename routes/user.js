@@ -110,7 +110,7 @@ const username=user.username;
         const deletetokens = await deletetoken(client, id);
         response.send({ message: "password updated " });
       } else {
-        response.send({ message: "link got expired" });
+        response.send({ message: "link got expired try again" });
       }
     }
   });
